@@ -26,6 +26,7 @@ void compute_world_coordinates(Vertex* v,float m[static 4][4]) {
 
 void compute_view_coordinates(Vertex* v,float m[static 4][4]) {
   matrix_vector_mul(m, v->world, v->view);
+  v->int_view_z = (uint16_t)v->view[2];
   v->processed = VIEW_COORDS_CALCULATED;
 }
 

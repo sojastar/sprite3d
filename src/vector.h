@@ -4,6 +4,7 @@
  * FUNCTION PROTOTYPES :
  ******************************************************************************/
 float*  vector_copy(float v[static 4]);
+void    vector_copy_over(float source[static 4], float dest[static 4]);
 void    vector_set(float v[static 4],float x,float y,float z,float w);
 void    vector_translate(float v[static 4], float dx,float dy,float dz);
 bool    vector_equality(float v1[static 4],float v2[static 4]);

@@ -41,7 +41,6 @@ void body_rotate_x(Body *b,float a) {
                               { 0.0,  cosf(a), -sinf(a), 0.0 },
                               { 0.0,  sinf(a),  cosf(a), 0.0 },
                               { 0.0,      0.0,      0.0, 1.0 } };
-
   d_matrix_matrix_mul(b->world, rot_matrix, b->world);
 }
 

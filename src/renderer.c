@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "renderer.h"
+#include "counting_sort.h"
 #include "radix_sort.h"
 
 Renderer* new_renderer(uint16_t width,uint16_t height,float near, float far) {
@@ -63,7 +64,7 @@ void render_scene(Renderer* renderer,SCamera* camera,Scene* scene) {
     renderer->sorted_sprites      = (Sprite**)malloc(in_frustum_sprites_count * sizeof(Sprite*));
   }
 
-  //camera_reset_view_matrix(camera);
+  camera_reset_view_matrix(camera);
   camera_compute_view_matrix(camera);
 
   renderer->in_frustum_sprites_count  = 0;
@@ -78,12 +79,11 @@ void render_scene(Renderer* renderer,SCamera* camera,Scene* scene) {
         renderer->in_frustum_sprites[renderer->in_frustum_sprites_count] = body->sprites[i];
         renderer->in_frustum_sprites_count += 1;
       }
-
-      radix_sort(renderer->in_frustum_sprites_count, renderer->in_frustum_sprites, renderer->sorted_sprites);
     }
 
     current     = current->next; 
   }
-
   
+  counting_sort(renderer->in_frustum_sprites_count, renderer->in_frustum_sprites, renderer->sorted_sprites);
+  //radix_sort(renderer->in_frustum_sprites_count, renderer->in_frustum_sprites, renderer->sorted_sprites);
 }

@@ -30,6 +30,18 @@ void test_vector_copy(void) {
   TEST_ASSERT_EQUAL_FLOAT(v[3], c[3]);
 }
 
+void test_vector_copy_over(void) {
+  float s[] = { 0.0, 1.0, 2.0, 3.0 };
+  float d[4];
+
+  vector_copy_over(s, d);
+
+  TEST_ASSERT_EQUAL_FLOAT(s[0], d[0]);
+  TEST_ASSERT_EQUAL_FLOAT(s[1], d[1]);
+  TEST_ASSERT_EQUAL_FLOAT(s[2], d[2]);
+  TEST_ASSERT_EQUAL_FLOAT(s[3], d[3]);
+}
+
 void test_vector_set(void) {
   float v[] = { 0.0, 1.0, 2.0, 3.0 };
 

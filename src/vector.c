@@ -15,6 +15,13 @@ float* vector_copy(float v[static 4]) {
   return new_v;
 }
 
+void vector_copy_over(float source[static 4], float dest[static 4]) {
+  dest[0] = source[0];
+  dest[1] = source[1];
+  dest[2] = source[2];
+  dest[3] = source[3];
+}
+
 void vector_set(float v[static 4],float x,float y,float z,float w) {
   v[0] = x; 
   v[1] = y; 

@@ -12,6 +12,8 @@ typedef struct Vertex {
   float world[4];
   float view[4];
 
+  uint16_t  int_view_z;
+
   uint8_t   processed;
   bool      in_frustum;
   uint16_t  screen_x, screen_y;
