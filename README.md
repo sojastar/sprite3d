@@ -1,7 +1,7 @@
 # sprite3d
 A Sprite based 3D Engine
 
-![Sprite3d Demo](demo.mov)
+![Sprite3d Demo](demo.gif)
 
 Sprite3d is a sprite based 3D engine. Objects are not built from polygons but from single vertices rendered as scaled and rotated sprites. The engine tries to emulate the aesthetic of late 80's/early 90's games like [After Burner](https://en.wikipedia.org/wiki/After_Burner), [Power Drift](https://en.wikipedia.org/wiki/Power_Drift) or [Galaxy Force](https://en.wikipedia.org/wiki/Galaxy_Force).
 
