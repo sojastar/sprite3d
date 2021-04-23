@@ -90,8 +90,9 @@ for (size_t i = 0; i < renderer->in_frustum_sprites_count; i++) {
   // All the necessary informations for drawing the sprite ...
   // ... with your backend of choice are available in the  ...
   // ... enumerated sprite structure :
-  // - sprite->vertex->screen_x|y for the position
-  // - sprite->vertex->screen_width|height for the size
-  // - sprite->atlas_file|x|y|w|h for the 
+  // - sprite->draw_x|y for the position
+  // - sprite->draw_width|height for the size
+  // - sprite->draw_scale (needed by some backends )
+  // - sprite->atlas_file|x|y|w|h for the sprite texture position in the texture atlas
 }
 ```
