@@ -84,6 +84,9 @@ int main(void) {
       
       for (ssize_t i = renderer->in_frustum_sprites_count -1; i >= 0; --i) {
         Sprite* sprite  = renderer->sorted_sprites[i];
+
+        // vvv this is RayLib specific                          vvv
+        // vvv but you can update it for your prefered  backend vvv
         DrawTextureTiled( spheres,
                           (Rectangle){ sprite->atlas_x, sprite->atlas_y, sprite->atlas_w, sprite->atlas_h},
                           (Rectangle){ sprite->draw_x, sprite->draw_y, sprite->draw_width, sprite->draw_height },
