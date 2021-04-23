@@ -14,8 +14,6 @@ int main(void) {
 
 
   // Textures Initialization :
-  // NOTE: Textures MUST be loaded after Window initialization.
-  // because an OpenGL context is required.
   Texture2D spheres       = LoadTexture("./example/sprites/spheres_all.png");
 
 
@@ -24,11 +22,12 @@ int main(void) {
   Scene*  scene           = new_scene();
 
   scene_push_element(scene, cube);
-  body_move_to(cube, 0.0, 0.0, -50.0);
+  body_move_to(cube, 0.0, 0.0, -75.0);
 
   float     position[4]   = { 0.0, 0.0, 0.0, 1.0 };
-  float     direction[4]  = { 0.0, 0.0,-1.0, 1.0 };
-  SCamera*  camera        = new_camera(position, direction);
+  float     forward[4]    = { 0.0, 0.0,-1.0, 1.0 };
+  float     up[4]         = { 0.0, 1.0, 0.0, 1.0 };
+  SCamera*  camera        = new_camera(position, forward, up);
 
   Renderer* renderer  = new_renderer(1280, 720, 1.0, 300.0);
 
@@ -44,13 +43,22 @@ int main(void) {
     // Game Logic :
     
     // Rotate the cube :
+    body_rotate_x(scene->first->body,        angle * GetFrameTime());
     body_rotate_z(scene->first->body,  1.5 * angle * GetFrameTime());
     body_rotate_y(scene->first->body, -2.0 * angle * GetFrameTime());
-    body_rotate_x(scene->first->body,        angle * GetFrameTime());
 
     // Move the camera :
-    float o[4]  = {0.0, 0.0, 1.0, 0.0};
-    if (IsKeyDown(KEY_DOWN)) camera_translate(camera, o);
+    if (IsKeyDown(KEY_Q)) camera_rotate_z(camera,  0.4 * GetFrameTime());
+    if (IsKeyDown(KEY_E)) camera_rotate_z(camera, -0.4 * GetFrameTime());
+    if (IsKeyDown(KEY_W)) camera_rotate_x(camera, -0.4 * GetFrameTime());
+    if (IsKeyDown(KEY_S)) camera_rotate_x(camera,  0.4 * GetFrameTime());
+    if (IsKeyDown(KEY_A)) camera_rotate_y(camera,  0.4 * GetFrameTime());
+    if (IsKeyDown(KEY_D)) camera_rotate_y(camera, -0.4 * GetFrameTime());
+
+    if (IsKeyDown(KEY_UP))    camera_move_forward(camera, -20.0 * GetFrameTime());
+    if (IsKeyDown(KEY_DOWN))  camera_move_forward(camera,  20.0 * GetFrameTime());
+    if (IsKeyDown(KEY_LEFT))  camera_move_right(camera, -20.0 * GetFrameTime());
+    if (IsKeyDown(KEY_RIGHT)) camera_move_right(camera,  20.0 * GetFrameTime());
 
     // Game Render :
     BeginDrawing();

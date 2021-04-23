@@ -110,7 +110,7 @@ void vector_rotate_z(float v[static 4],float angle) {
   float buffer[4];
 
   buffer[0] = v[0] * c - v[1] * s;
-  buffer[1] = v[0] * s - v[1] * c;
+  buffer[1] = v[0] * s + v[1] * c;
   buffer[2] = v[2];
   buffer[3] = v[3];
 
