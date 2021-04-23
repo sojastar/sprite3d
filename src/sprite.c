@@ -10,6 +10,7 @@ Sprite* new_sprite(Vertex* vertex,uint16_t width,uint16_t height,uint16_t scale,
   s->height       = scale * height;
   s->draw_x       = -1280;
   s->draw_y       = -720;
+  s->draw_scale   = scale;
   s->draw_width   = scale * width;
   s->draw_height  = scale * height;
   s->angle        = 0.0;
@@ -29,8 +30,9 @@ void free_sprite(Sprite* s) {
 }
 
 void sprite_compute_draw_size(Sprite* s) {
-  s->draw_width   = (int)( (float)s->width / fabs(s->vertex->view[2]));
-  s->draw_height  = (int)((float)s->height / fabs(s->vertex->view[2]));
+  s->draw_scale   = (float)s->scale / s->vertex->view[2];
+  s->draw_width   = (uint16_t)( s->width / s->vertex->view[2]);
+  s->draw_height  = (uint16_t)(s->height / s->vertex->view[2]);
   s->draw_x       = s->vertex->screen_x - (s->draw_width  >> 1);
   s->draw_y       = s->vertex->screen_y - (s->draw_height >> 1);
 }

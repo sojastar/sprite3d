@@ -10,8 +10,9 @@ typedef struct Sprite {
   uint16_t    scale;
   uint16_t    draw_x;
   uint16_t    draw_y;
-  int16_t     draw_width;
-  int16_t     draw_height;
+  float       draw_scale;
+  uint16_t    draw_width;
+  uint16_t    draw_height;
   float       angle;
   const char* atlas_file;
   uint16_t    atlas_x;

@@ -84,17 +84,12 @@ int main(void) {
       
       for (ssize_t i = renderer->in_frustum_sprites_count -1; i >= 0; --i) {
         Sprite* sprite  = renderer->sorted_sprites[i];
-        Vertex* vertex  = sprite->vertex;
-        uint16_t  screen_width  = (int)(sprite->width / vertex->view[2]);
-        uint16_t  screen_height = (int)(sprite->height / vertex->view[2]);
-        uint16_t  screen_x  = vertex->screen_x - (screen_width >> 1);
-        uint16_t  screen_y  = vertex->screen_y - (screen_height >> 1);
         DrawTextureTiled( spheres,
                           (Rectangle){ sprite->atlas_x, sprite->atlas_y, sprite->atlas_w, sprite->atlas_h},
-                          (Rectangle){ screen_x, screen_y, screen_width, screen_height },
+                          (Rectangle){ sprite->draw_x, sprite->draw_y, sprite->draw_width, sprite->draw_height },
                           (Vector2){ 0.0f, 0.0f },
                           0.0f,
-                          sprite->scale / vertex->view[2],
+                          sprite->draw_scale,
                           GetColor(0xFFFFFFFF) );
       }
     EndDrawing();

@@ -71,12 +71,16 @@ void render_scene(Renderer* renderer,SCamera* camera,Scene* scene) {
   while(current != (void*)0) {
     Body* body  = current->body;
     for(size_t i = 0; i < body->sprite_count; ++i) {
-      Vertex *vertex  = body->sprites[i]->vertex;
+      Sprite* sprite  = body->sprites[i];
+      Vertex* vertex  = sprite->vertex;
+
       compute_world_coordinates(vertex, body->world);
       project_vertex(renderer, camera, vertex);
 
       if (vertex->in_frustum) {
-        renderer->in_frustum_sprites[renderer->in_frustum_sprites_count] = body->sprites[i];
+        sprite_compute_draw_size(sprite);
+
+        renderer->in_frustum_sprites[renderer->in_frustum_sprites_count] = sprite;
         renderer->in_frustum_sprites_count += 1;
       }
     }
