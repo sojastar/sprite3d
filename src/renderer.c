@@ -69,6 +69,7 @@ void render_scene(Renderer* renderer,SCamera* camera,Scene* scene) {
   camera_compute_view_matrix(camera);
 
   renderer->in_frustum_sprites_count  = 0;
+  current                             = scene->first;
   while(current != (void*)0) {
     Body* body  = current->body;
     for(size_t i = 0; i < body->sprite_count; ++i) {
