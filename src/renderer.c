@@ -7,14 +7,15 @@
 Renderer* new_renderer(uint16_t width,uint16_t height,float near, float far) {
   Renderer* renderer = (Renderer *)malloc(sizeof(Renderer));
 
-  renderer->width           = width;
-  renderer->height          = height;
-  renderer->half_width      = width >> 1;
-  renderer->half_height     = height >> 1;
-  renderer->ratio           = (float)width / height;
-  renderer->near            = near;
-  renderer->far             = far;
-  renderer->sorted_sprites  = (void*)0;
+  renderer->width               = width;
+  renderer->height              = height;
+  renderer->half_width          = width >> 1;
+  renderer->half_height         = height >> 1;
+  renderer->ratio               = (float)width / height;
+  renderer->near                = near;
+  renderer->far                 = far;
+  renderer->in_frustum_sprites  = (void*)0;
+  renderer->sorted_sprites      = (void*)0;
 
   return renderer;
 }
